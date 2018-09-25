@@ -1,69 +1,60 @@
 view: sfpd_incidents {
-  sql_table_name: sfcrime_scratch.sfpd_incidents ;;
+  sql_table_name: `bigquery-public-data.san_francisco.sfpd_incidents` ;;
 
   dimension: address {
     type: string
-    sql: ${TABLE}.Address ;;
+    sql: ${TABLE}.address ;;
   }
 
   dimension: category {
     type: string
-    sql: ${TABLE}.Category ;;
+    sql: ${TABLE}.category ;;
+  }
+
+  dimension_group: timestamp {
+    type: time
+    datatype: timestamp
+    sql: ${date} ;;
   }
 
   dimension: date {
     type: string
-    sql: ${TABLE}.Date ;;
-  }
-
-  dimension: day_of_week {
-    type: string
-    sql: ${TABLE}.DayOfWeek ;;
+    sql: ${TABLE}.timestamp ;;
   }
 
   dimension: descript {
     type: string
-    sql: ${TABLE}.Descript ;;
+    sql: ${TABLE}.descript ;;
   }
 
-  dimension: incidnt_num {
+  dimension: unique_key {
     type: number
-    sql: ${TABLE}.IncidntNum ;;
+    sql: ${TABLE}.unique_key ;;
   }
 
   dimension: location {
     type: string
-    sql: ${TABLE}.Location ;;
-  }
-
-  dimension: pd_district {
-    type: string
-    sql: ${TABLE}.PdDistrict ;;
+    sql: ${TABLE}.location ;;
   }
 
   dimension: pd_id {
     type: number
-    sql: ${TABLE}.PdId ;;
+    sql: ${TABLE}.pdid ;;
   }
 
   dimension: resolution {
     type: string
-    sql: ${TABLE}.Resolution ;;
+    sql: ${TABLE}.resolution ;;
   }
 
-  dimension: time {
-    type: string
-    sql: ${TABLE}.Time ;;
+  dimension: lat {
+    type: number
+    sql: ${TABLE}.latitude ;;
   }
 
-  dimension: x {
-    type: string
-    sql: ${TABLE}.X ;;
-  }
-
-  dimension: y {
-    type: string
-    sql: ${TABLE}.Y ;;
+  dimension: long {
+    type: number
+    sql: ${TABLE}.longitude ;;
   }
 
   measure: count {
