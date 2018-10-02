@@ -6,8 +6,18 @@ view: moon_phases {
     sql: ${TABLE}.phase ;;
   }
 
+  dimension: phase_emoji {
+    type: string
+    sql: ${TABLE}.phase_emoji ;;
+  }
+
   dimension_group: peak_time {
     type: time
     sql: ${TABLE}.peak_datetime ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
   }
 }

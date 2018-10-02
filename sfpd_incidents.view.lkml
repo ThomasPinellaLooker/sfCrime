@@ -14,11 +14,6 @@ view: sfpd_incidents {
   dimension_group: timestamp {
     type: time
     datatype: timestamp
-    sql: ${date} ;;
-  }
-
-  dimension: date {
-    type: string
     sql: ${TABLE}.timestamp ;;
   }
 
@@ -32,9 +27,15 @@ view: sfpd_incidents {
     sql: ${TABLE}.unique_key ;;
   }
 
-  dimension: location {
+  dimension: pddestrict {
     type: string
-    sql: ${TABLE}.location ;;
+    sql: ${TABLE}.pddistrict ;;
+  }
+
+  dimension: location {
+    type: location
+    sql_latitude: ${lat} ;;
+    sql_longitude: ${long} ;;
   }
 
   dimension: pd_id {
@@ -55,6 +56,11 @@ view: sfpd_incidents {
   dimension: long {
     type: number
     sql: ${TABLE}.longitude ;;
+  }
+
+  dimension: rand {
+    type: number
+    sql: RAND() ;;
   }
 
   measure: count {
